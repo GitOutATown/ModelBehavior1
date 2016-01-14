@@ -76,11 +76,7 @@ function cycleReplication(marbles, sampleSize, maxPopSize, maxCycles) {
         var rat = ratio(newPop);
         rat.unshift(cycleCount);
         cycles.push(rat);
-        //console.log("cycleReplication, cycleCount: " + cycleCount + " ratio(newPop): " + JSON.stringify(ratio(newPop)));
     }
-    //console.log("cycleReplication, cycleCount: " + cycleCount + " ratio(newPop): " + JSON.stringify(ratio(newPop)));
-    //var header = ["State","Under 5 Years","5 to 13 Years"];
-    //cycles.unshift(header);
     return cycles;
 }
 
@@ -102,7 +98,6 @@ blackPop.fill(new Green());
 whitePop.fill(new Orange());
 
 var initialCombinedPop = blackPop.concat(whitePop);
-//console.log("initialCombinedPop.length: " + initialCombinedPop.length);
 
 <!-- ---- Cycle until convergence --------------- -->
 
