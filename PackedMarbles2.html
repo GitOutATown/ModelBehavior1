@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<style>
+    circle {
+      fill: rgb(31, 119, 180);
+      fill-opacity: .25;
+      stroke: rgb(31, 119, 180);
+      stroke-width: 1px;
+    }
+
+    .greenMarble circle {
+      fill: #9999ff;
+      fill-opacity: 1;
+    }
+
+    .orangeMarble circle {
+      fill: #ff9933;
+      fill-opacity: 1;
+    }
+
+    .leaf circle {
+      fill: #ff00ff;
+      fill-opacity: .25;
+    }
+</style>
+
+<body>
+
+<script src="d3.min.js"></script>
+<script src="underscore-min.js"></script>
+<script src="pop_drift_lab_JSON_1.js"></script>
+
+<script>
+
+var data = init();
+console.log("==> data: " + JSON.stringify(data));
+
+var diameter = 680,
+    format = d3.format(",d");
+
+var pack = d3.layout.pack()
+    .size([diameter - 4, diameter - 4]);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", diameter)
+    .attr("height", diameter)
+  .append("g")
+    .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
+
+//var nodes = pack.nodes(data);
+
+var node = svg.datum(data).selectAll(".leaf")
+      .data(pack.nodes);
+console.log("node: " + node);
+
+/*
+var circle = svg.selectAll("circle")
+    .data(nodes);
+
+console.log("--> circle: " + circle);
+
+circle.enter().append("circle")
+    .attr("class", "leaf")
+    .attr("transform", function(d) {
+        console.log("d.x: " + d.x + ", d.y: " + d.y);
+        return "translate(" + d.x + "," + d.y + ")"; 
+    });
+*/
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

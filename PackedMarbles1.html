@@ -32,8 +32,7 @@ body {
 
 <script src="d3.min.js"></script>
 <script src="underscore-min.js"></script>
-
-<script src="pop_drift_lab_8x.js"></script>
+<script src="pop_drift_lab_JSON_1.js"></script>
 
 <script>
 console.log("TOP");
@@ -72,13 +71,12 @@ console.log("TOP");
 
   data.forEach(function(d) {
     var y0 = 0;
-    var midPoint = y0;
     d.colors = color.domain().map(function(name) { 
       return {name: name}; 
     });
     d.colors.forEach(function(d2, i) {
       d2.y0 = y0;
-      y0 = d[i+1]; 
+      y0 = d[i+1]; // accessing array of length 3. d[0] is cycle count, d[1] is percent green, d[2] is percent orange.
       d2.y1 = y0 + d2.y0; 
     });
   });

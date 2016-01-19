@@ -2,20 +2,30 @@
 
 <!-- ---- Entities --------------------- -->
 
+var Population = function() {
+    var children = [];
+    var name;
+}
+
 var Marble = function() {
     var color;
+    var size = 10;
 };
 
 var Green = function() {
     Marble.call(this);
-    this.color = 'green';
+    this.color = "green";
+    this.name = "green";
+    this.value = 10;
 };
 Green.prototype = Object.create(Marble.prototype);
 Green.prototype.constructor = Green;
 
 var Orange = function() {
     Marble.call(this);
-    this.color = 'orange';
+    this.color = "orange";
+    this.name = "orange";
+    this.value = 10;
 };
 Orange.prototype = Object.create(Marble.prototype);
 Orange.prototype.constructor = Orange;
@@ -23,7 +33,7 @@ Orange.prototype.constructor = Orange;
 <!-- ---- functions --------------------- -->
 
 function ratio(marbles) {
-    var greens = marbles.filter( function(m) {return m.color === 'green'} );
+    var greens = marbles.filter( function(m) {return m.color === "green"} );
     var ratioGreen = greens.length / marbles.length;
     var ratioOrange = 1 - ratioGreen;
     var rat = [round(ratioGreen), round(ratioOrange)];
@@ -94,23 +104,27 @@ function round(value) {
 
 <!-- ---- Initialization --------------- -->
 
-var maxPopSize = 1000;
-var sampleSize = 100;
-var maxCycles = 1000;
+function init() {
+    var maxPopSize = 200;
+    var sampleSize = 6;
+    var maxCycles = 1000;
 
-var greenPop = new Array(Math.floor(maxPopSize / 2));
-var orangePop = new Array(maxPopSize - greenPop.length);
+    var greenPop = new Array(Math.floor(maxPopSize / 2));
+    var orangePop = new Array(maxPopSize - greenPop.length);
 
-greenPop.fill(new Green());
-orangePop.fill(new Orange());
+    greenPop.fill(new Green());
+    orangePop.fill(new Orange());
 
-var initialCombinedPop = _.shuffle(greenPop.concat(orangePop));
+    var initialCombinedPop = _.shuffle(greenPop.concat(orangePop));
+
+    return {"name": "population", "children": initialCombinedPop};
+}
 
 <!-- ---- Cycle until convergence --------------- -->
 
-function run() {
-    return cycleReplication(initialCombinedPop, sampleSize, maxPopSize, maxCycles);
-}
+//function run() {
+//    return cycleReplication(initialCombinedPop, sampleSize, maxPopSize, maxCycles);
+//}
 
 
 
