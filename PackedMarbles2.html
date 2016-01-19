@@ -33,8 +33,8 @@
 
 <script>
 
-var data = init();
-console.log("==> data: " + JSON.stringify(data));
+var root = init();
+console.log("==> root: " + JSON.stringify(root));
 
 var diameter = 680,
     format = d3.format(",d");
@@ -50,9 +50,19 @@ var svg = d3.select("body").append("svg")
 
 //var nodes = pack.nodes(data);
 
-var node = svg.datum(data).selectAll(".leaf")
-      .data(pack.nodes);
-console.log("node: " + node);
+var node = svg.datum(root).selectAll(".leaf")
+    .data(pack.nodes);
+
+//console.log("node: " + node);
+
+/*
+node.enter().append("g")
+      .attr("class", function(d) { 
+        //console.log("--> d.children: " + d.children);
+        return d.children ? "node" : "leaf node"; 
+      })
+      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+*/
 
 /*
 var circle = svg.selectAll("circle")
